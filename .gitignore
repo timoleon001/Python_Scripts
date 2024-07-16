@@ -1,0 +1,8 @@
+/pyScript/*
+
+# IDE Project files
+/.idea/*
+/.idea/*
+/.DS_Store
+/.cache
+/.php-cs-fixer.cache
