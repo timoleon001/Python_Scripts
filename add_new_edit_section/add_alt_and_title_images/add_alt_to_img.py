@@ -9,7 +9,7 @@ def process_html(html):
     img_tags = soup.find_all('img')
     for img_tag in img_tags:
         if 'alt' not in img_tag.attrs or not img_tag['alt']:
-            img_tag['alt'] = 'Новости на ЕТВ'
+            img_tag['alt'] = 'Железнодорожный вокзал Симферополь'
             print(img_tag)
 
     # Обработка тегов button
@@ -43,7 +43,7 @@ def process_html_files_in_directory(directory):
 
 
 def main():
-    directory_path = 'D:\\OSPanel\\domains\\ekburg.tv'
+    directory_path = 'D:\\OSPanel\\domains\\vokzal-simferopol.info'
     process_html_files_in_directory(directory_path)
 
 

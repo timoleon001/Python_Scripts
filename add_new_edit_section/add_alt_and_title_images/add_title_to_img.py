@@ -8,7 +8,7 @@ def process_html(html):
     img_tags = soup.find_all('img')
     for img_tag in img_tags:
         alt_text = img_tag.get('alt', '')
-        title_text = alt_text if alt_text else 'Новости на ЕТВ'
+        title_text = alt_text if alt_text else 'Железнодорожный вокзал Симферополь'
         img_tag['title'] = title_text
 
     # Вернуть обновленный HTML
@@ -36,7 +36,7 @@ def process_html_files_in_directory(directory):
 
 
 def main():
-    directory_path = 'D:\\OSPanel\\domains\\ekburg.tv'
+    directory_path = 'D:\\OSPanel\\domains\\vokzal-simferopol.info'
     process_html_files_in_directory(directory_path)
 
 
