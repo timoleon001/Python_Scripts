@@ -3,10 +3,12 @@ import re
 from bs4 import BeautifulSoup
 from tqdm import tqdm
 
-
-# Cкрипт изменяет содержимое тега <h1> на текст из тега <title>, обрезанный до первого тире.
-# Если тег <h1> отсутствует, он добавляется после заднного селектора.
-# Неудавшиеся изменения записываются в файл no_add_h1_page.txt.
+# Настройки скрипта
+SEARCH_SELECTORS = ['.h1-light.stream-header', '.content-layout']
+ERROR_LOG_FILE = 'no_add_h1_page.txt'
+DIRECTORY_FILE = 'all_directory.txt'
+TITLE_SPLIT_CHAR = " || "
+H1_SUFFIX = " - ЖД Вокзал"
 
 def process_file(file_path):
     try:
@@ -17,17 +19,19 @@ def process_file(file_path):
         if not title_tag or not title_tag.string:
             return file_path, 'No title tag found'
 
-        new_text = re.split(r' - ', title_tag.string)[0].strip() + " - EKBTV"
+        new_text = title_tag.string.split(TITLE_SPLIT_CHAR)[0].strip()
 
         h1_tag = soup.find('h1')
         if h1_tag:
-            h1_tag.string = new_text
+            h1_tag.string = new_text + H1_SUFFIX
         else:
-            stream_header = soup.select_one('.h1-light.stream-header') or soup.select_one('.page-block-header')
-            if stream_header:
-                new_h1_tag = soup.new_tag('h1', **{'class': 'page-block-header'})
-                new_h1_tag.string = new_text
-                stream_header.insert_after(new_h1_tag)
+            for selector in SEARCH_SELECTORS:
+                stream_header = soup.select_one(selector)
+                if stream_header:
+                    new_h1_tag = soup.new_tag('h1', **{'class': 'postheader'})
+                    new_h1_tag.string = new_text
+                    stream_header.insert_after(new_h1_tag)
+                    break
             else:
                 return file_path, 'No suitable insertion point found'
 
@@ -40,7 +44,7 @@ def process_file(file_path):
 
 
 def main():
-    with open('all_directory.txt', 'r', encoding='utf-8') as f:
+    with open(DIRECTORY_FILE, 'r', encoding='utf-8') as f:
         file_paths = [line.strip() for line in f if line.strip()]
 
     results = []
@@ -50,7 +54,7 @@ def main():
             results.append(result)
             pbar.update(1)
 
-    with open('no_add_h1_page.txt', 'w', encoding='utf-8') as no_add_file:
+    with open(ERROR_LOG_FILE, 'w', encoding='utf-8') as no_add_file:
         for result in results:
             if 'Processed successfully' not in result[1]:
                 no_add_file.write(f"{result[0]}: {result[1]}\n")

@@ -8,8 +8,8 @@ from multiprocessing import Pool, cpu_count
 
 
 # Параметры для формирования URL
-BASE_URL = "https://ekburg.tv/"
-REMOVE_PREFIX = "D:\\OSPanel\\domains\\ekburg.tv\\"
+BASE_URL = "https://vokzal-simferopol.info/"
+REMOVE_PREFIX = "D:\\OSPanel\\domains\\vokzal-simferopol.info\\"
 REMOVE_SUFFIX = "/index.html"
 ADD_SUFFIX = "/"
 
@@ -30,7 +30,7 @@ def process_html_file(file_path):
 
         # Удаление старых тегов
         for tag in soup.find_all(['link', 'meta']):
-            if tag.get('rel') in [['canonical'], ['alternate']] or tag.get('name', '').lower() in ['viewport',
+            if tag.get('rel') in [['canonical'], ['alternate1']] or tag.get('name', '').lower() in ['viewport',
                                                                                                    'robots']:
                 tag.decompose()
 

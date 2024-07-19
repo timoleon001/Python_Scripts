@@ -4,8 +4,8 @@ import os
 
 def convert_url_to_path(source_file, target_file):
     # Заменяемый и заменяющий пути
-    url_prefix = "https://ekburg.tv"
-    local_path_prefix = "D:\\OSPanel\\domains\\ekburg.tv"
+    url_prefix = "https://vokzal-simferopol.info"
+    local_path_prefix = "D:\\OSPanel\\domains\\vokzal-simferopol.info"
 
     # Открытие исходного файла для чтения и целевого файла для записи
     with open(source_file, 'r', encoding='utf-8') as file_read, open(target_file, 'w', encoding='utf-8') as file_write:

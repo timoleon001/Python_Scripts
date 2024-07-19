@@ -8,16 +8,20 @@ from tqdm import tqdm
 
 # Путь к файлу со списком HTML файлов
 file_list_path = 'all_directory.txt'
+# Тег и атрибут для удаления
+tag_to_remove = 'link'
+attribute_key = 'type'
+attribute_value = 'application/json+oembed'
 
 
-# Функция для удаления тегов <link rel='shortlink'> из HTML файла
-def remove_shortlink_tag(file_path):
+# Функция для удаления тегов с определенным атрибутом из HTML файла
+def remove_tag_with_attribute(file_path, tag, attr_key, attr_value):
     try:
         with open(file_path, 'r', encoding='utf-8') as file:
             soup = BeautifulSoup(file, 'html.parser')
 
-        # Найти и удалить все теги <link> с атрибутом rel='shortlink'
-        for tag in soup.find_all('link', rel='shortlink'):
+        # Найти и удалить все теги с указанным атрибутом
+        for tag in soup.find_all(tag, {attr_key: attr_value}):
             tag.decompose()
 
         # Перезаписать файл с изменениями
@@ -33,4 +37,4 @@ with open(file_list_path, 'r', encoding='utf-8') as file_list:
 
 # Обработка файлов с индикатором прогресса
 for file_path in tqdm(files, desc="Обработка HTML файлов"):
-    remove_shortlink_tag(file_path)
+    remove_tag_with_attribute(file_path, tag_to_remove, attribute_key, attribute_value)

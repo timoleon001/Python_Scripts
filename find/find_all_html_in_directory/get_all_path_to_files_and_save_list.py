@@ -1,8 +1,8 @@
 import os
 
 # Определяем базовые пути
-BASE_DISK_PATH = 'D:\\OSPanel\\domains\\ekburg.tv'
-BASE_URL_PATH = 'https://ekburg.tv'
+BASE_DISK_PATH = 'D:\\OSPanel\\domains\\vokzal-simferopol.info'
+BASE_URL_PATH = 'https://vokzal-simferopol.info'
 
 def get_html_files_with_paths(directory):
     """

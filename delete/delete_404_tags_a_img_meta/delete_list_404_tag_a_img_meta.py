@@ -12,7 +12,7 @@ REMOVE_META_TAGS = True
 REMOVE_LINK_TAGS = True
 
 # Каталог для сканирования
-directory_to_scan = "D:\\OSPanel\\domains\\ekburg.tv"
+directory_to_scan = "D:\\OSPanel\\domains\\vokzal-simferopol.info"
 # Файл с URL-адресами для удаления
 urls_file_path = "urls_for_delete.txt"
 

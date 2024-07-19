@@ -6,7 +6,7 @@ from tqdm import tqdm
 # сканирует все html файлы по каталогу и добавляет заданный тег на всех найденных страницах
 
 # Путь к каталогу
-directory = 'D://OSPanel//domains//ekburg.tv'
+directory = 'D://OSPanel//domains//vokzal-simferopol.info'
 
 
 # Функция для обработки одного файла

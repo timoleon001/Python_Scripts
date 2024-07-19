@@ -63,8 +63,8 @@ def process_html_files_in_directory(directory, selectors, num_processes=21):
 
 def main():
     # Пример использования
-    directory_path = 'D:\\OSPanel\\domains\\ekburg.tv'  # Путь к директории
-    selectors = ['.video-content', 'iframe']  # Список селекторов для удаления
+    directory_path = 'D:\\OSPanel\\domains\\vokzal-simferopol.info'  # Путь к директории
+    selectors = ['.pogoda', 'iframe']  # Список селекторов для удаления
     process_html_files_in_directory(directory_path, selectors, num_processes=21)  # Указано максимальное количество процессов
 
 if __name__ == '__main__':

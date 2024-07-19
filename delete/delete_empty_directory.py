@@ -4,9 +4,10 @@ import shutil  # Importing shutil for rmtree
 
 def remove_directories(root_directory, keywords):
     """
-    Remove directories that are either empty or contain specific keywords in their names, including all their contents.
-    :param root_directory: The root directory to start the removal process from.
-    :param keywords: A list of keyword strings. If a directory name contains any of these keywords, or it's empty, it will be removed along with all its contents.
+    Удалите каталоги, которые либо пусты, либо содержат определенные ключевые слова в своих именах, включая все их содержимое.
+ :param root_directory: Корневой каталог, из которого следует начать процесс удаления.
+ :param ключевые слова: список строк ключевых слов. Если имя каталога содержит любое из этих ключевых слов или оно пустое,
+ оно будет удалено вместе со всем своим содержимым.
     """
     for root, dirs, files in os.walk(root_directory, topdown=False):
         for dir_name in dirs:
@@ -20,7 +21,7 @@ def remove_directories(root_directory, keywords):
 
 
 if __name__ == "__main__":
-    root_directory = "D:\\OSPanel\\domains\\ekburg.tv"
+    root_directory = "D:\\OSPanel\\domains\\vokzal-simferopol.info"
     keywords = ["feed", "fshare", "%3f"]
 
     try:
